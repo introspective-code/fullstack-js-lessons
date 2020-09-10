@@ -1,0 +1,20 @@
+{
+  "name": "lesson-express-static-site",
+  "version": "1.0.0",
+  "description": "example express static site",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "static",
+    "site"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1"
+  }
+}

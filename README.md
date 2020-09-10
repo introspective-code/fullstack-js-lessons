@@ -1,28 +1,10 @@
 # Full-Stack JavaScript Lessons
 
-TODO: Add description
+A collection of full-stack JavaScript projects for learning modern js fundamentals.
 
 ### Table Of Contents
 
-```
-...
-```
-
-### Installation
-
-```
-```
-
-### Basic Usage
-
-```
-...
-```
-
-### Development
-
-```
-```
+- [Serving Static Websites Using Express](/lesson-express-static-site)
 
 ### License
 
