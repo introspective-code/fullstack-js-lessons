@@ -1,0 +1,20 @@
+{
+  "name": "lesson-nedb-crud-api",
+  "version": "1.0.0",
+  "description": "nedb inventory crud app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nedb",
+    "flatfile",
+    "node"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.17.1",
+    "nedb": "1.8.0"
+  }
+}
