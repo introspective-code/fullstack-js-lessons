@@ -1,0 +1,17 @@
+{
+  "name": "lesson-promises-async-await",
+  "version": "1.0.0",
+  "description": "examples for promises and async/await",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "promises",
+    "async",
+    "await"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT"
+}
