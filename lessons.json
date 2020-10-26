@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Serving Static Websites Using Express",
+    "path": "/lesson-express-static-site",
+    "topics": ["static sites", "express.js"]
+  },
+  {
+    "name": "CRUD API Built with NeDB and Express",
+    "path": "/lesson-nedb-crud-api",
+    "topics": ["api", "crud", "nedb", "express.js"]
+  },
+  {
+    "name": "CRUD API with NeDB, JOI Validation and Promises",
+    "path": "/lesson-nedb-crud-api-async-validation",
+    "topics": [
+      "api",
+      "crud",
+      "nedb",
+      "express.js",
+      "validation",
+      "joi schema",
+      "promises",
+      "async/await"
+    ]
+  },
+  {
+    "name": "Promises and Async/Await",
+    "path": "/lesson-promises-async-await",
+    "topics": ["static sites", "express.js", "promises", "async/await"]
+  },
+  {
+    "name": "Generate Static Site Using Node",
+    "path": "/lesson-generate-static-site",
+    "topics": ["static sites", "express.js"]
+  }
+]
