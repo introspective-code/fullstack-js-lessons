@@ -21,7 +21,11 @@
         content="A collection of full-stack JavaScript projects for learning modern js fundamentals."
       />
       <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
       <link rel="icon" type="image/png" sizes="16x16" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/open-book_1f4d6.png">
+      <link rel="stylesheet"
+            href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/styles/tomorrow-night-bright.min.css">
+      <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.3.2/build/highlight.min.js"></script>
       <style>
         
   body {
@@ -57,6 +61,13 @@
 
   .column {
     padding: 2vw;
+    width: 100%;
+  }
+
+  @media only screen and (min-width: 1300px) {
+    .column {
+      width: 60%;
+    }
   }
 
   .lessons {
@@ -69,7 +80,6 @@
     padding: 0.5rem;
     border: 1px solid #82ccdd;
     border-radius: 0.5rem;
-    cursor: pointer;
     color: #82ccdd;
     font-size: 1.15rem;
     transition: 200ms ease-in-out all;
@@ -82,6 +92,7 @@
 
   .lesson-name {
     font-weight: 800;
+    cursor: pointer;
   }
 
   .lesson-topics {
@@ -137,10 +148,119 @@
     margin-bottom: 1rem;
   }
 
+  .file-preview-content {
+
+  }
+
+  .lesson-file-previews {
+    display: flex;
+  }
+
+  .file-preview-path {
+    font-size: 0.75rem;
+    border: 1px solid #3c6382;
+    color: #3c6382;
+    margin: 0.5rem 0.5rem 0 0;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .file-preview-path:hover {
+    border: 1px solid #78e08f;
+    color: #78e08f;
+  }
+
+  #modal {
+    position: absolute;
+    visibility: hidden;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: #000000e8;
+    width: 80vw;
+    height: 80vh;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    z-index: 1;
+  }
+
+  .hljs {
+    background-color: transparent;
+  }
+
+  #modal-filename {
+    margin-bottom: 1rem;
+  }
+
+  .modal-container {
+    overflow-y: scroll;
+    max-height: 85%;
+  }
+
+  pre {
+    font-size: 1rem;
+  }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #0a3d62;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #3c6382;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3c6382;
+  }
+
+  code {
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .project-name {
+    color: #f6b93b;
+  }
+
+  .project-filename {
+    color: #38ada9;
+    font-weight: bolder;
+  }
+
+  .modal-close {
+    text-align: right;
+    cursor: pointer;
+    transition: 200ms ease-in-out color;
+  }
+
+  .modal-close:hover {
+    color: #eb2f06;
+  }
+
+  .modal-close:active {
+    opacity: 0.5;
+  }
+
       </style>
     </head>
     <body>
       
+    <div id="modal">
+      <div onclick="closeModal();" class="modal-close">Close</div>
+      <div id="modal-filename"></div>
+      <div class="modal-container">
+        <pre><code id="modal-content"></code></pre>
+      </div>
+    </div>
     <div class="row">
       <div class="column">
         <div class="title thin">Fullstack <span class="highlight">JavaScript Lessons</span></div>
@@ -160,33 +280,75 @@
         <div class="header">Example Projects:</div>
         <div class="lessons">
           
-    <div class="lesson" data-topics="static sites,express.js" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-express-static-site'">
-      <div class="lesson-name">Serving Static Websites Using Express</div>
+    <div class="lesson" data-topics="static sites,express.js">
+      <div class="lesson-name" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-express-static-site'">Serving Static Websites Using Express</div>
       <div class="lesson-topics">static sites, express.js</div>
+      <div class="lesson-file-previews">
+      <div onclick="openModal('/lesson-express-static-site/index.js')" class="file-preview-path">index.js</div>
+    
+
+      <div onclick="openModal('/lesson-express-static-site/package.json')" class="file-preview-path">package.json</div>
+    
+
+      <div onclick="openModal('/lesson-express-static-site/public/index.html')" class="file-preview-path">public/index.html</div>
+    </div>
     </div>
   
 
-    <div class="lesson" data-topics="api,crud,nedb,express.js" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-nedb-crud-api'">
-      <div class="lesson-name">CRUD API Built with NeDB and Express</div>
+    <div class="lesson" data-topics="api,crud,nedb,express.js">
+      <div class="lesson-name" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-nedb-crud-api'">CRUD API Built with NeDB and Express</div>
       <div class="lesson-topics">api, crud, nedb, express.js</div>
+      <div class="lesson-file-previews">
+      <div onclick="openModal('/lesson-nedb-crud-api/data.db')" class="file-preview-path">data.db</div>
+    
+
+      <div onclick="openModal('/lesson-nedb-crud-api/index.js')" class="file-preview-path">index.js</div>
+    
+
+      <div onclick="openModal('/lesson-nedb-crud-api/package.json')" class="file-preview-path">package.json</div>
+    </div>
     </div>
   
 
-    <div class="lesson" data-topics="api,crud,nedb,express.js,validation,joi schema,promises,async/await" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-nedb-crud-api-async-validation'">
-      <div class="lesson-name">CRUD API with NeDB, JOI Validation and Promises</div>
+    <div class="lesson" data-topics="api,crud,nedb,express.js,validation,joi schema,promises,async/await">
+      <div class="lesson-name" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-nedb-crud-api-async-validation'">CRUD API with NeDB, JOI Validation and Promises</div>
       <div class="lesson-topics">api, crud, nedb, express.js, validation, joi schema, promises, async/await</div>
+      <div class="lesson-file-previews">
+      <div onclick="openModal('/lesson-nedb-crud-api-async-validation/data.db')" class="file-preview-path">data.db</div>
+    
+
+      <div onclick="openModal('/lesson-nedb-crud-api-async-validation/index.js')" class="file-preview-path">index.js</div>
+    
+
+      <div onclick="openModal('/lesson-nedb-crud-api-async-validation/package.json')" class="file-preview-path">package.json</div>
+    </div>
     </div>
   
 
-    <div class="lesson" data-topics="static sites,express.js,promises,async/await" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-promises-async-await'">
-      <div class="lesson-name">Promises and Async/Await</div>
+    <div class="lesson" data-topics="static sites,express.js,promises,async/await">
+      <div class="lesson-name" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-promises-async-await'">Promises and Async/Await</div>
       <div class="lesson-topics">static sites, express.js, promises, async/await</div>
+      <div class="lesson-file-previews">
+      <div onclick="openModal('/lesson-promises-async-await/index.js')" class="file-preview-path">index.js</div>
+    
+
+      <div onclick="openModal('/lesson-promises-async-await/package.json')" class="file-preview-path">package.json</div>
+    </div>
     </div>
   
 
-    <div class="lesson" data-topics="static sites,express.js" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-generate-static-site'">
-      <div class="lesson-name">Generate Static Site Using Node</div>
+    <div class="lesson" data-topics="static sites,express.js">
+      <div class="lesson-name" onclick="window.location.href='https://github.com/introspective-code/fullstack-js-lessons/tree/master/lesson-generate-static-site'">Generate Static Site Using Node</div>
       <div class="lesson-topics">static sites, express.js</div>
+      <div class="lesson-file-previews">
+      <div onclick="openModal('/lesson-generate-static-site/index.js')" class="file-preview-path">index.js</div>
+    
+
+      <div onclick="openModal('/lesson-generate-static-site/package.json')" class="file-preview-path">package.json</div>
+    
+
+      <div onclick="openModal('/lesson-generate-static-site/src/main.md')" class="file-preview-path">src/main.md</div>
+    </div>
     </div>
   
         </div>
@@ -198,12 +360,15 @@
   
       <script>
         
-  var RESET_TOPIC_COLOR = 'white';
-  var SELECTED_TOPIC_COLOR = 'red';
-
+  var modalOpen = false;
   var selectedTopics = [];
   var lessons = document.getElementsByClassName("lesson");
   var topics = document.getElementsByClassName("topic");
+  var allContent = Object.values({"lesson-express-static-site":[{"project":"lesson-express-static-site","pathToProcess":"/lesson-express-static-site/index.js","content":"Y29uc3QgZXhwcmVzcyA9IHJlcXVpcmUoJ2V4cHJlc3MnKTsKY29uc3QgYXBwID0gZXhwcmVzcygpOwoKY29uc3QgUE9SVCA9IHByb2Nlc3MuZW52LlBPUlQgfHwgODAwMDsKCmFwcC51c2UoZXhwcmVzcy5zdGF0aWMoX19kaXJuYW1lICsgJy9wdWJsaWMnKSk7CgphcHAubGlzdGVuKFBPUlQsICgpID0+IHsKICBjb25zb2xlLmxvZyhgWyBpbmRleC5qcyBdIFNlcnZpbmcgc3RhdGljIHNpdGUgYXQgaHR0cDovL2xvY2FsaG9zdDoke1BPUlR9YCk7Cn0pOwo=","extension":"js"},{"project":"lesson-express-static-site","pathToProcess":"/lesson-express-static-site/package.json","content":"ewogICJuYW1lIjogImxlc3Nvbi1leHByZXNzLXN0YXRpYy1zaXRlIiwKICAidmVyc2lvbiI6ICIxLjAuMCIsCiAgImRlc2NyaXB0aW9uIjogImV4YW1wbGUgZXhwcmVzcyBzdGF0aWMgc2l0ZSIsCiAgIm1haW4iOiAiaW5kZXguanMiLAogICJzY3JpcHRzIjogewogICAgInN0YXJ0IjogIm5vZGUgaW5kZXguanMiLAogICAgInRlc3QiOiAiZWNobyBcIkVycm9yOiBubyB0ZXN0IHNwZWNpZmllZFwiICYmIGV4aXQgMSIKICB9LAogICJrZXl3b3JkcyI6IFsKICAgICJleHByZXNzIiwKICAgICJzdGF0aWMiLAogICAgInNpdGUiCiAgXSwKICAiYXV0aG9yIjogIk5hZmV1IE5hc2lyIDxuYWZldS5uYXNpckBnbWFpbC5jb20+IChodHRwOi8vbmFmZXUuY29tLykiLAogICJsaWNlbnNlIjogIk1JVCIsCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJleHByZXNzIjogIjQuMTcuMSIKICB9Cn0K","extension":"json"},{"project":"lesson-express-static-site","pathToProcess":"/lesson-express-static-site/public/index.html","content":"PCFET0NUWVBFIGh0bWw+CjxodG1sPgo8aGVhZD4KICA8dGl0bGU+RXhwcmVzcyBTdGF0aWMgU2l0ZTwvdGl0bGU+CjwvaGVhZD4KPGJvZHk+CiAgPGgxPkhlbGxvIFdvcmxkITwvaDE+CiAgPGgzPlRoZSB3ZWJzZXJ2ZXIgc2VydmluZyB0aGlzIHN0YXRpYyBzaXRlIGlzIGJ1aWx0IG9uIDxzdHJvbmc+ZXhwcmVzcy5qczwvc3Ryb25nPi48L2gzPgogIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9pbnRyb3NwZWN0aXZlLWNvZGUvZnVsbHN0YWNrLWpzLWxlc3NvbnMiPkNsaWNrIGhlcmUgZm9yIG1vcmUgZXhhbXBsZSBjb2RlLjwvYT4KPC9ib2R5Pgo8L2h0bWw+","extension":"html"}],"lesson-generate-static-site":[{"project":"lesson-generate-static-site","pathToProcess":"/lesson-generate-static-site/index.js","content":"Y29uc3QgZnMgPSByZXF1aXJlKCJmcyIpOwpjb25zdCBleHByZXNzID0gcmVxdWlyZSgiZXhwcmVzcyIpOwpjb25zdCBzaG93ZG93biA9IHJlcXVpcmUoInNob3dkb3duIik7Cgpjb25zdCBhcHAgPSBleHByZXNzKCk7CmNvbnN0IGNvbnZlcnRlciA9IG5ldyBzaG93ZG93bi5Db252ZXJ0ZXIoKTsKCmNvbnN0IFBPUlQgPSBwcm9jZXNzLmVudi5QT1JUIHx8IDgwMDA7CmNvbnN0IE1BUktET1dOX0RFTElNSVRFUiA9ICIrKysiOwoKYXBwLnVzZShleHByZXNzLnN0YXRpYyhfX2Rpcm5hbWUgKyAiL2Rpc3QiKSk7Cgpjb25zdCBzb3VyY2UgPSBmcy5yZWFkRmlsZVN5bmMoIi4vc3JjL21haW4ubWQiLCAidXRmOCIpOwoKY29uc3QgW3RpdGxlLCBjc3MsIHNjcmlwdCwgbWFya2Rvd25dID0gc291cmNlLnNwbGl0KE1BUktET1dOX0RFTElNSVRFUik7CmNvbnN0IGJvZHkgPSBjb252ZXJ0ZXIubWFrZUh0bWwobWFya2Rvd24pOwoKY29uc3QgdGVtcGxhdGUgPSBgCjwhRE9DVFlQRSBodG1sPgo8aHRtbD4KICA8aGVhZD4KICAgIDx0aXRsZT4ke3RpdGxlfTwvdGl0bGU+CiAgICA8c3R5bGU+JHtjc3N9PC9zdHlsZT4KICA8L2hlYWQ+CiAgPGJvZHk+CiAgICAke2JvZHl9CiAgICA8c2NyaXB0PiR7c2NyaXB0fTwvc2NyaXB0PgogIDwvYm9keT4KPC9odG1sPgpgOwoKZnMud3JpdGVGaWxlU3luYygiLi9kaXN0L2luZGV4Lmh0bWwiLCB0ZW1wbGF0ZSwgInV0ZjgiKTsKCmFwcC5saXN0ZW4oUE9SVCwgKCkgPT4gewogIGNvbnNvbGUubG9nKGBbIGluZGV4LmpzIF0gTGlzdGVuaW5nIG9uIHBvcnQgJHtQT1JUfWApOwp9KTsK","extension":"js"},{"project":"lesson-generate-static-site","pathToProcess":"/lesson-generate-static-site/package.json","content":"ewogICAgIm5hbWUiOiAibGVzc29uLWdlbmVyYXRlLXN0YXRpYy1zaXRlIiwKICAgICJ2ZXJzaW9uIjogIjEuMC4wIiwKICAgICJkZXNjcmlwdGlvbiI6ICJnZW5lcmF0ZSBzdGF0aWMgc2l0ZSIsCiAgICAibWFpbiI6ICJpbmRleC5qcyIsCiAgICAic2NyaXB0cyI6IHsKICAgICAgICAic3RhcnQiOiAibm9kZSBpbmRleC5qcyIsCiAgICAgICAgInRlc3QiOiAiZWNobyBcIkVycm9yOiBubyB0ZXN0IHNwZWNpZmllZFwiICYmIGV4aXQgMSIKICAgIH0sCiAgICAia2V5d29yZHMiOiBbCiAgICAgICAgIm5vZGUiLAogICAgICAgICJtYXJrZG93biIsCiAgICAgICAgInN0YXRpYyIKICAgIF0sCiAgICAiYXV0aG9yIjogIk5hZmV1IE5hc2lyIDxuYWZldS5uYXNpckBnbWFpbC5jb20+IChodHRwOi8vbmFmZXUuY29tLykiLAogICAgImxpY2Vuc2UiOiAiTUlUIiwKICAgICJkZXZEZXBlbmRlbmNpZXMiOiB7CiAgICAgICAgImVzbGludCI6ICI3LjkuMCIKICAgIH0sCiAgICAiZGVwZW5kZW5jaWVzIjogewogICAgICAgICJleHByZXNzIjogIjQuMTcuMSIsCiAgICAgICAgInNob3dkb3duIjogIjEuOS4xIgogICAgfQp9Cg==","extension":"json"},{"project":"lesson-generate-static-site","pathToProcess":"/lesson-generate-static-site/src/main.md","content":"R2VuZXJhdGVkIFN0YXRpYyBTaXRlCisrKwpAaW1wb3J0IHVybCgnaHR0cHM6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3MyP2ZhbWlseT1LdW1iaCtTYW5zOndnaHRAMzAwOzcwMCZkaXNwbGF5PXN3YXAnKTsKCmJvZHkgewogIGJhY2tncm91bmQtY29sb3I6ICMzNDQ5NWU7CiAgY29sb3I6IHdoaXRlOwogIGZvbnQtZmFtaWx5OiAnS3VtYmggU2FucycsIHNhbnMtc2VyaWY7CiAgcGFkZGluZzogMTB2aCAxMHZ3IDEwdmggMTB2dzsKICBmb250LXNpemU6IDEuNWVtOwogIHRyYW5zaXRpb246IDJzIGVhc2UtaW4tb3V0IGJhY2tncm91bmQtY29sb3I7Cn0KCmNvZGUgewogIGJhY2tncm91bmQtY29sb3I6IGJsYWNrOwogIHBhZGRpbmc6IDBweCAycHggMHB4IDJweDsKICBjb2xvcjogI2YxYzQwZjsKfQoKKysrCnZhciBjb2xvcnMgPSBbJyMzNDQ5NWUnLCAnIzE2YTA4NScsICcjZDM1NDAwJywgJyNjMDM5MmInLCAnI2YzOWMxMiddOwpzZXRJbnRlcnZhbChmdW5jdGlvbigpewogIHZhciBjb2xvciA9IGNvbG9yc1tNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkgKiBjb2xvcnMubGVuZ3RoKV07CiAgZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2JvZHknKVswXS5zdHlsZSA9ICdiYWNrZ3JvdW5kLWNvbG9yOicgKyBjb2xvcjsKfSwgNTAwMCk7CgorKysKIyBIZWxsbyBXb3JsZAoKV2VsY29tZSB0byB5b3VyIGdlbmVyYXRlZCBzdGF0aWMgc2l0ZS4KCiMjIyBIb3cgaXMgaXQgZG9uZT8KCi0gV3JpdGUgdGl0bGUsIGNzcywgc2NyaXB0cyBhbmQgbWFya2Rvd24gaW4gYHNyYy9tYWluLm1kYCBmaWxlCi0gVXNlIG5vZGUgc2NyaXB0IGFuZCBgc2hvd2Rvd25gIHRvIGNvbnZlcnQgYC5tZGAgaW50byAqKmh0bWwqKiB0ZW1wbGF0ZQotIFdyaXRlIGdlbmVyYXRlZCB0ZW1wbGF0ZSBpbnRvIGBkaXN0L2luZGV4Lmh0bWxgIHBhdGggdXNpbmcgbm9kZSBzY3JpcHQKLSBTZXJ2ZSBgZGlzdGAgZm9sZGVyIGFzIHN0YXRpYyBjb250ZW50IHRocm91Z2ggZXhwcmVzcyBhcHAK","extension":"md"}],"lesson-nedb-crud-api":[{"project":"lesson-nedb-crud-api","pathToProcess":"/lesson-nedb-crud-api/data.db","content":"eyJ0eXBlIjoicGFudHMiLCJxdWFsaXR5IjoibmV3IiwiY29sb3IiOiJ5ZWxsb3ciLCJfaWQiOiJRTWNOeHBMYVRpNmY1cFBpIn0KeyJ0eXBlIjoiamFja2V0IiwicXVhbGl0eSI6Im9sZCIsImNvbG9yIjoiYmxhY2siLCJfaWQiOiJlbWVYWGJFQjVlaEVNQkZrIn0KeyJ0eXBlIjoic29ja3MiLCJxdWFsaXR5IjoibmV3IiwiY29sb3IiOiJncmV5IiwiX2lkIjoiaUlOQVN2NTNGZlhoODN6MyJ9Cg==","extension":"db"},{"project":"lesson-nedb-crud-api","pathToProcess":"/lesson-nedb-crud-api/index.js","content":"Y29uc3QgZXhwcmVzcyA9IHJlcXVpcmUoJ2V4cHJlc3MnKTsKY29uc3QgbmVkYiA9IHJlcXVpcmUoJ25lZGInKTsKCmNvbnN0IFBPUlQgPSBwcm9jZXNzLmVudi5QT1JUIHx8IDgwMDA7CmNvbnN0IERCX1BBVEggPSBwcm9jZXNzLmVudi5EQl9QQVRIIHx8ICdkYXRhLmRiJzsKCmNvbnN0IGRiID0gbmV3IG5lZGIoeyBmaWxlbmFtZTogREJfUEFUSCwgYXV0b2xvYWQ6IHRydWUgfSk7CmNvbnN0IGFwcCA9IGV4cHJlc3MoKTsKCmFwcC51c2UoZXhwcmVzcy5qc29uKCkpOwphcHAudXNlKGV4cHJlc3MudXJsZW5jb2RlZCh7IGV4dGVuZGVkOiB0cnVlIH0pKTsKCi8vIENyZWF0ZQphcHAucG9zdCgnL2FwaS9pbnZlbnRvcnknLCAocmVxLCByZXMpID0+IHsKICBjb25zdCB7IHR5cGUsIHF1YWxpdHksIGNvbG9yIH0gPSByZXEuYm9keTsKCiAgY29uc3QgaXRlbSA9IHsKICAgIHR5cGUsCiAgICBxdWFsaXR5LAogICAgY29sb3IKICB9OwoKICBkYi5pbnNlcnQoaXRlbSwgKGVyciwgcmVzdWx0KSA9PiB7CiAgICBpZiAoZXJyKSB7CiAgICAgIHJlcy5zdGF0dXMoNTAwKS5zZW5kKCdJbnRlcm5hbCBzZXJ2ZXIgZXJyb3IuJyk7CiAgICB9IGVsc2UgewogICAgICByZXMuanNvbihyZXN1bHQpOwogICAgfQogIH0pOwp9KTsKCi8vIFJlYWQgKEFsbCkKYXBwLmdldCgnL2FwaS9pbnZlbnRvcnknLCAocmVxLCByZXMpID0+IHsKICBkYi5maW5kKHt9LCAoZXJyLCByZXN1bHRzKSA9PiB7CiAgICBpZiAoZXJyKSB7CiAgICAgIHJlcy5zdGF0dXMoNTAwKS5zZW5kKCdJbnRlcm5hbCBzZXJ2ZXIgZXJyb3IuJyk7CiAgICB9IGVsc2UgewogICAgICByZXMuanNvbihyZXN1bHRzKTsKICAgIH0KICB9KTsKfSk7CgovLyBSZWFkCmFwcC5nZXQoJy9hcGkvaW52ZW50b3J5LzppZCcsIChyZXEsIHJlcykgPT4gewogIGNvbnN0IHF1ZXJ5ID0gewogICAgX2lkOiByZXEucGFyYW1zLmlkCiAgfTsKCiAgZGIuZmluZE9uZShxdWVyeSwgKGVyciwgcmVzdWx0KSA9PiB7CiAgICBpZiAoZXJyKSB7CiAgICAgIHJlcy5zdGF0dXMoNTAwKS5zZW5kKCdJbnRlcm5hbCBzZXJ2ZXIgZXJyb3IuJyk7CiAgICB9IGVsc2UgewogICAgICByZXMuanNvbihyZXN1bHQpOwogICAgfQogIH0pOwp9KTsKCi8vIFVwZGF0ZQphcHAucGF0Y2goJy9hcGkvaW52ZW50b3J5LzppZCcsIChyZXEsIHJlcykgPT4gewogIGNvbnN0IHF1ZXJ5ID0gewogICAgX2lkOiByZXEucGFyYW1zLmlkCiAgfTsKCiAgY29uc3Qgc2V0ID0ge307CgogIGNvbnN0IHsgdHlwZSwgcXVhbGl0eSwgY29sb3IgfSA9IHJlcS5ib2R5OwoKICBpZiAodHlwZSkgewogICAgc2V0LnR5cGUgPSB0eXBlOwogIH0KCiAgaWYgKHF1YWxpdHkpIHsKICAgIHNldC5xdWFsaXR5ID0gcXVhbGl0eTsKICB9CgogIGlmIChjb2xvcikgewogICAgc2V0LmNvbG9yID0gY29sb3I7CiAgfQoKICBjb25zdCB1cGRhdGUgPSB7CiAgICAkc2V0OiBzZXQKICB9OwoKICBjb25zdCBvcHRpb25zID0ge307CgogIGRiLnVwZGF0ZShxdWVyeSwgdXBkYXRlLCBvcHRpb25zLCAoZXJyLCByZXN1bHQpID0+IHsKICAgIGlmIChlcnIpIHsKICAgICAgcmVzLnN0YXR1cyg1MDApLnNlbmQoJ0ludGVybmFsIHNlcnZlciBlcnJvci4nKTsKICAgIH0gZWxzZSB7CiAgICAgIHJlcy5qc29uKHJlc3VsdCk7CiAgICB9CiAgfSk7Cn0pOwoKLy8gRGVzdHJveQphcHAuZGVsZXRlKCcvYXBpL2ludmVudG9yeS86aWQnLCAocmVxLCByZXMpID0+IHsKICBjb25zdCBxdWVyeSA9IHsKICAgIF9pZDogcmVxLnBhcmFtcy5pZAogIH07CgogIGNvbnN0IG9wdGlvbnMgPSB7fTsKCiAgZGIucmVtb3ZlKHF1ZXJ5LCBvcHRpb25zLCAoZXJyLCByZXN1bHQpID0+IHsKICAgIGlmIChlcnIpIHsKICAgICAgcmVzLnN0YXR1cyg1MDApLnNlbmQoJ0ludGVybmFsIHNlcnZlciBlcnJvci4nKTsKICAgIH0gZWxzZSB7CiAgICAgIHJlcy5qc29uKHJlc3VsdCk7CiAgICB9CiAgfSk7Cn0pOwoKYXBwLmxpc3RlbihQT1JULCAoKSA9PiB7CiAgY29uc29sZS5sb2coYFsgaW5kZXguanMgXSBMaXN0ZW5pbmcgb24gcG9ydCAke1BPUlR9YCk7Cn0pOwo=","extension":"js"},{"project":"lesson-nedb-crud-api","pathToProcess":"/lesson-nedb-crud-api/package.json","content":"ewogICJuYW1lIjogImxlc3Nvbi1uZWRiLWNydWQtYXBpIiwKICAidmVyc2lvbiI6ICIxLjAuMCIsCiAgImRlc2NyaXB0aW9uIjogIm5lZGIgaW52ZW50b3J5IGNydWQgYXBwIiwKICAibWFpbiI6ICJpbmRleC5qcyIsCiAgInNjcmlwdHMiOiB7CiAgICAic3RhcnQiOiAibm9kZSBpbmRleC5qcyIsCiAgICAidGVzdCI6ICJlY2hvIFwiRXJyb3I6IG5vIHRlc3Qgc3BlY2lmaWVkXCIgJiYgZXhpdCAxIgogIH0sCiAgImtleXdvcmRzIjogWwogICAgIm5lZGIiLAogICAgImZsYXRmaWxlIiwKICAgICJub2RlIgogIF0sCiAgImF1dGhvciI6ICJOYWZldSBOYXNpciA8bmFmZXUubmFzaXJAZ21haWwuY29tPiAoaHR0cDovL25hZmV1LmNvbS8pIiwKICAibGljZW5zZSI6ICJNSVQiLAogICJkZXBlbmRlbmNpZXMiOiB7CiAgICAiZXhwcmVzcyI6ICI0LjE3LjEiLAogICAgIm5lZGIiOiAiMS44LjAiCiAgfQp9Cg==","extension":"json"}],"lesson-nedb-crud-api-async-validation":[{"project":"lesson-nedb-crud-api-async-validation","pathToProcess":"/lesson-nedb-crud-api-async-validation/data.db","content":"eyJ0eXBlIjoicGFudHMiLCJxdWFsaXR5Ijoid29ybiIsImNvbG9yIjoiYmx1ZSIsIl9pZCI6IjBBZ2x5dkVrYkhZQ1RDd1MifQp7InR5cGUiOiJzb2NrcyIsInF1YWxpdHkiOiJvbGQiLCJfaWQiOiJhSUd2SEFWb0pzQlV2eEhlIn0KeyIkJGRlbGV0ZWQiOnRydWUsIl9pZCI6IjBBZ2x5dkVrYkhZQ1RDd1MifQp7IiQkZGVsZXRlZCI6dHJ1ZSwiX2lkIjoiYUlHdkhBVm9Kc0JVdnhIZSJ9Cg==","extension":"db"},{"project":"lesson-nedb-crud-api-async-validation","pathToProcess":"/lesson-nedb-crud-api-async-validation/index.js","content":"Y29uc3QgSm9pID0gcmVxdWlyZSgiam9pIik7CmNvbnN0IGV4cHJlc3MgPSByZXF1aXJlKCJleHByZXNzIik7CmNvbnN0IG5lZGIgPSByZXF1aXJlKCJuZWRiLWFzeW5jIikuQXN5bmNOZWRiOwpjb25zdCBtb3JnYW4gPSByZXF1aXJlKCJtb3JnYW4iKTsKCmNvbnN0IFBPUlQgPSBwcm9jZXNzLmVudi5QT1JUIHx8IDgwMDA7CmNvbnN0IERCX1BBVEggPSBwcm9jZXNzLmVudi5EQl9QQVRIIHx8ICJkYXRhLmRiIjsKCmNvbnN0IGRiID0gbmV3IG5lZGIoeyBmaWxlbmFtZTogREJfUEFUSCwgYXV0b2xvYWQ6IHRydWUgfSk7CmNvbnN0IGFwcCA9IGV4cHJlc3MoKTsKCmFwcC51c2UoZXhwcmVzcy5qc29uKCkpOwphcHAudXNlKGV4cHJlc3MudXJsZW5jb2RlZCh7IGV4dGVuZGVkOiB0cnVlIH0pKTsKCm1vcmdhbi50b2tlbigiYm9keSIsIChyZXEsIHJlcykgPT4gSlNPTi5zdHJpbmdpZnkocmVxLmJvZHkpKTsKYXBwLnVzZSgKICBtb3JnYW4oCiAgICAiOm1ldGhvZCA6dXJsIDpzdGF0dXMgOnJlc3BvbnNlLXRpbWUgbXMgLSA6cmVzW2NvbnRlbnQtbGVuZ3RoXSA6Ym9keSAtIDpyZXFbY29udGVudC1sZW5ndGhdIgogICkKKTsKCmNvbnN0IHBvc3RTY2hlbWEgPSBKb2kub2JqZWN0KHsKICB0eXBlOiBKb2kuc3RyaW5nKCkKICAgIC52YWxpZCgic2hpcnQiLCAicGFudHMiLCAic3dlYXRlciIsICJqYWNrZXQiLCAic29ja3MiLCAic2NhcmYiKQogICAgLnJlcXVpcmVkKCksCiAgcXVhbGl0eTogSm9pLnN0cmluZygpLnZhbGlkKCJuZXciLCAib2xkIiwgIndvcm4iKS5yZXF1aXJlZCgpLAogIGNvbG9yOiBKb2kuc3RyaW5nKCksCn0pOwoKY29uc3QgcGF0Y2hTY2hlbWEgPSBKb2kub2JqZWN0KHsKICB0eXBlOiBKb2kuc3RyaW5nKCkudmFsaWQoCiAgICAic2hpcnQiLAogICAgInBhbnRzIiwKICAgICJzd2VhdGVyIiwKICAgICJqYWNrZXQiLAogICAgInNvY2tzIiwKICAgICJzY2FyZiIKICApLAogIHF1YWxpdHk6IEpvaS5zdHJpbmcoKS52YWxpZCgibmV3IiwgIm9sZCIsICJ3b3JuIiksCiAgY29sb3I6IEpvaS5zdHJpbmcoKSwKfSk7Cgpjb25zdCBxdWVyeVNjaGVtYSA9IEpvaS5vYmplY3QoewogIF9pZDogSm9pLnN0cmluZygpLnJlcXVpcmVkKCksCn0pOwoKYXBwLmxpc3RlbihQT1JULCAoKSA9PiB7CiAgY29uc29sZS5sb2coYFsgaW5kZXguanMgXSBMaXN0ZW5pbmcgb24gcG9ydCAke1BPUlR9YCk7Cn0pOwoKLy8gQ3JlYXRlCmFwcC5wb3N0KCIvYXBpL2ludmVudG9yeSIsIGFzeW5jIChyZXEsIHJlcywgbmV4dCkgPT4gewogIHRyeSB7CiAgICBjb25zdCB7IHR5cGUsIHF1YWxpdHksIGNvbG9yIH0gPSByZXEuYm9keTsKCiAgICBjb25zdCBpbnB1dCA9IHsgdHlwZSwgcXVhbGl0eSwgY29sb3IgfTsKCiAgICBhd2FpdCBwb3N0U2NoZW1hLnZhbGlkYXRlQXN5bmMoaW5wdXQpOwogICAgY29uc3QgZGF0YSA9IGF3YWl0IGRiLmFzeW5jSW5zZXJ0KGlucHV0KTsKICAgIHJlcy5qc29uKGRhdGEpOwogIH0gY2F0Y2ggKGVycikgewogICAgbmV4dChlcnIpOwogIH0KfSk7CgovLyBSZWFkIChBbGwpCmFwcC5nZXQoIi9hcGkvaW52ZW50b3J5IiwgYXN5bmMgKHJlcSwgcmVzLCBuZXh0KSA9PiB7CiAgdHJ5IHsKICAgIGNvbnN0IGRhdGEgPSBhd2FpdCBkYi5hc3luY0ZpbmQoe30pOwogICAgcmVzLmpzb24oZGF0YSk7CiAgfSBjYXRjaCAoZXJyKSB7CiAgICBuZXh0KGVycik7CiAgfQp9KTsKCi8vIFJlYWQKYXBwLmdldCgiL2FwaS9pbnZlbnRvcnkvOmlkIiwgYXN5bmMgKHJlcSwgcmVzLCBuZXh0KSA9PiB7CiAgY29uc3QgaW5wdXQgPSB7CiAgICBfaWQ6IHJlcS5wYXJhbXMuaWQsCiAgfTsKCiAgdHJ5IHsKICAgIGF3YWl0IHF1ZXJ5U2NoZW1hLnZhbGlkYXRlQXN5bmMoaW5wdXQpOwogICAgY29uc3QgZGF0YSA9IGF3YWl0IGRiLmFzeW5jRmluZE9uZShpbnB1dCk7CiAgICByZXMuanNvbihkYXRhKTsKICB9IGNhdGNoIChlcnIpIHsKICAgIG5leHQoZXJyKTsKICB9Cn0pOwoKLy8gVXBkYXRlCmFwcC5wYXRjaCgiL2FwaS9pbnZlbnRvcnkvOmlkIiwgYXN5bmMgKHJlcSwgcmVzLCBuZXh0KSA9PiB7CiAgY29uc3QgcXVlcnkgPSB7CiAgICBfaWQ6IHJlcS5wYXJhbXMuaWQsCiAgfTsKCiAgdHJ5IHsKICAgIGNvbnN0IGlucHV0ID0gcmVxLmJvZHk7CgogICAgY29uc3QgdXBkYXRlID0gewogICAgICAkc2V0OiBpbnB1dCwKICAgIH07CgogICAgY29uc3Qgb3B0aW9ucyA9IHt9OwoKICAgIGF3YWl0IHF1ZXJ5U2NoZW1hLnZhbGlkYXRlQXN5bmMocXVlcnkpOwogICAgYXdhaXQgcGF0Y2hTY2hlbWEudmFsaWRhdGVBc3luYyhpbnB1dCk7CiAgICBjb25zdCBjb3VudCA9IGF3YWl0IGRiLmFzeW5jVXBkYXRlKHF1ZXJ5LCB1cGRhdGUsIG9wdGlvbnMpOwogICAgcmVzLmpzb24oeyB1cGRhdGVkOiBjb3VudCB9KTsKICB9IGNhdGNoIChlcnIpIHsKICAgIG5leHQoZXJyKTsKICB9Cn0pOwoKLy8gRGVzdHJveQphcHAuZGVsZXRlKCIvYXBpL2ludmVudG9yeS86aWQiLCBhc3luYyAocmVxLCByZXMsIG5leHQpID0+IHsKICBjb25zdCBxdWVyeSA9IHsKICAgIF9pZDogcmVxLnBhcmFtcy5pZCwKICB9OwoKICBjb25zdCBvcHRpb25zID0ge307CgogIHRyeSB7CiAgICBhd2FpdCBxdWVyeVNjaGVtYS52YWxpZGF0ZUFzeW5jKHF1ZXJ5KTsKICAgIGNvbnN0IGNvdW50ID0gYXdhaXQgZGIuYXN5bmNSZW1vdmUocXVlcnksIG9wdGlvbnMpOwogICAgcmVzLmpzb24oeyByZW1vdmVkOiBjb3VudCB9KTsKICB9IGNhdGNoIChlcnIpIHsKICAgIG5leHQoZXJyKTsKICB9Cn0pOwo=","extension":"js"},{"project":"lesson-nedb-crud-api-async-validation","pathToProcess":"/lesson-nedb-crud-api-async-validation/package.json","content":"ewogICJuYW1lIjogImxlc3Nvbi1uZWRiLWNydWQtYXBpLWFzeW5jLXZhbGlkYXRpb24iLAogICJ2ZXJzaW9uIjogIjEuMC4wIiwKICAiZGVzY3JpcHRpb24iOiAibmVkYiBjcnVkIGFwaSB3aXRoIGFzeW5jL2F3YWl0IHZhbGlkYXRpb24iLAogICJtYWluIjogImluZGV4LmpzIiwKICAic2NyaXB0cyI6IHsKICAgICJzdGFydCI6ICJub2RlIGluZGV4LmpzIiwKICAgICJ0ZXN0IjogImVjaG8gXCJFcnJvcjogbm8gdGVzdCBzcGVjaWZpZWRcIiAmJiBleGl0IDEiCiAgfSwKICAia2V5d29yZHMiOiBbCiAgICAibm9kZSIsCiAgICAic2NoZW1hIiwKICAgICJqb2kiLAogICAgImNydWQiCiAgXSwKICAiYXV0aG9yIjogIk5hZmV1IE5hc2lyIDxuYWZldS5uYXNpckBnbWFpbC5jb20+IChodHRwOi8vbmFmZXUuY29tLykiLAogICJsaWNlbnNlIjogIk1JVCIsCiAgImRlcGVuZGVuY2llcyI6IHsKICAgICJleHByZXNzIjogIjQuMTcuMSIsCiAgICAiam9pIjogIjE3LjIuMSIsCiAgICAibW9yZ2FuIjogIjEuMTAuMCIsCiAgICAibmVkYiI6ICIxLjguMCIsCiAgICAibmVkYi1hc3luYyI6ICIwLjEuMyIKICB9Cn0K","extension":"json"}],"lesson-promises-async-await":[{"project":"lesson-promises-async-await","pathToProcess":"/lesson-promises-async-await/index.js","content":"Y29uc3QgT05FX1NFQ09ORCA9IDEwMDA7CmNvbnN0IFRXT19TRUNPTkRTID0gMjAwMDsKY29uc3QgVEhSRUVfU0VDT05EUyA9IDMwMDA7Cgpjb25zdCBDUkVBVEVfRVJST1IgPSBwcm9jZXNzLmVudi5DUkVBVEVfRVJST1IgPT0gInRydWUiOwoKY29uc3QgZGVsYXlMb2cxID0gKCkgPT4gewogIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7CiAgICBzZXRUaW1lb3V0KCgpID0+IHsKICAgICAgY29uc29sZS5sb2coIjEgLSBhZnRlciB0aHJlZSBzZWNvbmRzIik7CiAgICAgIHJlc29sdmUoKTsKICAgIH0sIFRIUkVFX1NFQ09ORFMpOwogIH0pOwp9OwoKY29uc3QgZGVsYXlMb2cyID0gKCkgPT4gewogIHJldHVybiBuZXcgUHJvbWlzZSgocmVzb2x2ZSwgcmVqZWN0KSA9PiB7CiAgICBzZXRUaW1lb3V0KCgpID0+IHsKICAgICAgY29uc29sZS5sb2coIjIgLSBhZnRlciB0d28gc2Vjb25kcyIpOwogICAgICBpZiAoQ1JFQVRFX0VSUk9SKSB7CiAgICAgICAgcmVqZWN0KEVycm9yKCJhcmJpdHJhcnkgaXNzdWUiKSk7CiAgICAgIH0gZWxzZSB7CiAgICAgICAgcmVzb2x2ZSgpOwogICAgICB9CiAgICB9LCBUV09fU0VDT05EUyk7CiAgfSk7Cn07Cgpjb25zdCBkZWxheUxvZzMgPSAoKSA9PiB7CiAgcmV0dXJuIG5ldyBQcm9taXNlKChyZXNvbHZlLCByZWplY3QpID0+IHsKICAgIHNldFRpbWVvdXQoKCkgPT4gewogICAgICBjb25zb2xlLmxvZygiMyAtIGFmdGVyIG9uZSBzZWNvbmRzIik7CiAgICAgIHJlc29sdmUoKTsKICAgIH0sIE9ORV9TRUNPTkQpOwogIH0pOwp9OwoKY29uc3QgaW52b2tlV2l0aG91dEFzeW5jQXdhaXQgPSAoKSA9PiB7CiAgZGVsYXlMb2cxKCkudGhlbigKICAgIChyZXN1bHQpID0+IHsKICAgICAgZGVsYXlMb2cyKCkudGhlbigKICAgICAgICAocmVzdWx0KSA9PiB7CiAgICAgICAgICBkZWxheUxvZzMoKS50aGVuKAogICAgICAgICAgICAocmVzdWx0KSA9PiB7CiAgICAgICAgICAgICAgY29uc29sZS5sb2coIkZpbmlzaGVkIGludm9raW5nIHdpdGhvdXQgYXN5bmMvYXdhaXQuIik7CiAgICAgICAgICAgIH0sCiAgICAgICAgICAgIChlcnJvcikgPT4gewogICAgICAgICAgICAgIGNvbnNvbGUubG9nKCItLS0gRVJST1IgaW4gUFJPTUlTRTogMyAtLS0iKTsKICAgICAgICAgICAgfQogICAgICAgICAgKTsKICAgICAgICB9LAogICAgICAgIChlcnJvcikgPT4gewogICAgICAgICAgY29uc29sZS5sb2coIi0tLSBFUlJPUiBpbiBQUk9NSVNFOiAyIC0tLSIpOwogICAgICAgIH0KICAgICAgKTsKICAgIH0sCiAgICAoZXJyb3IpID0+IHsKICAgICAgY29uc29sZS5sb2coIi0tLSBFUlJPUiBpbiBQUk9NSVNFOiAxIC0tLSIpOwogICAgfQogICk7Cn07Cgpjb25zdCBpbnZva2VXaXRoQXN5bmNBd2FpdCA9IGFzeW5jICgpID0+IHsKICB0cnkgewogICAgYXdhaXQgZGVsYXlMb2cxKCk7CiAgICBhd2FpdCBkZWxheUxvZzIoKTsKICAgIGF3YWl0IGRlbGF5TG9nMygpOwogICAgY29uc29sZS5sb2coIkZpbmlzaGVkIGludm9raW5nIHdpdGggYXN5bmMvYXdhaXQuIik7CiAgfSBjYXRjaCAoZXJyKSB7CiAgICBjb25zb2xlLmxvZygiLS0tIEVSUk9SIGluIEFTWU5DL0FXQUlUIC0tLSIpOwogIH0KfTsKCmludm9rZVdpdGhvdXRBc3luY0F3YWl0KCk7Cmludm9rZVdpdGhBc3luY0F3YWl0KCk7Cg==","extension":"js"},{"project":"lesson-promises-async-await","pathToProcess":"/lesson-promises-async-await/package.json","content":"ewogICJuYW1lIjogImxlc3Nvbi1wcm9taXNlcy1hc3luYy1hd2FpdCIsCiAgInZlcnNpb24iOiAiMS4wLjAiLAogICJkZXNjcmlwdGlvbiI6ICJleGFtcGxlcyBmb3IgcHJvbWlzZXMgYW5kIGFzeW5jL2F3YWl0IiwKICAibWFpbiI6ICJpbmRleC5qcyIsCiAgInNjcmlwdHMiOiB7CiAgICAic3RhcnQiOiAibm9kZSBpbmRleC5qcyIsCiAgICAidGVzdCI6ICJlY2hvIFwiRXJyb3I6IG5vIHRlc3Qgc3BlY2lmaWVkXCIgJiYgZXhpdCAxIgogIH0sCiAgImtleXdvcmRzIjogWwogICAgInByb21pc2VzIiwKICAgICJhc3luYyIsCiAgICAiYXdhaXQiCiAgXSwKICAiYXV0aG9yIjogIk5hZmV1IE5hc2lyIDxuYWZldS5uYXNpckBnbWFpbC5jb20+IChodHRwOi8vbmFmZXUuY29tLykiLAogICJsaWNlbnNlIjogIk1JVCIKfQo=","extension":"json"}]}).flat();
+  allContent = allContent.reduce(function(obj, item){
+    obj[item.pathToProcess] = { project: item.project, content: window.atob(item.content), extension: item.extension };
+    return obj;
+  }, {});
 
   function handleTopicSelection(topic) {
     if (selectedTopics.indexOf(topic) < 0) {
@@ -270,6 +435,32 @@
     }
     return output;
   }
+
+  function openModal(path) {
+    var modal = document.getElementById('modal');
+    var modalContent = document.getElementById('modal-content');
+    var modalFilename = document.getElementById('modal-filename');
+    modal.style.visibility = 'visible';
+    modalContent.innerHTML = allContent[path].content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    modalContent.className = "language-" + allContent[path].extension;
+    hljs.highlightBlock(modalContent);
+    modalFilename.innerHTML = '<span class="project-name">' + allContent[path].project + '</span> / <span class="project-filename">' + path.split('/').slice(2).join('/') + '</span>';
+    setTimeout(function(){
+      modalOpen = true
+    }, 200);
+  }
+
+  function closeModal() {
+    modalOpen = false;
+    modal.style.visibility = 'hidden';
+  }
+
+  window.addEventListener('click', function(e){
+    if (!document.getElementById('modal').contains(e.target) && modalOpen === true) {
+      document.getElementById('modal').style.visibility = 'hidden';
+      modalOpen = false;
+    }
+  });
 
       </script>
     </body>
