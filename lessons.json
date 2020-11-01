@@ -37,5 +37,10 @@
     "name": "Make HTTP Requests Using Node",
     "path": "/lesson-make-http-request",
     "topics": ["api", "http", "axios", "async/await", "promises"]
+  },
+  {
+    "name": "Destructuring Example With Nested Collection",
+    "path": "/lesson-destructuring-collection",
+    "topics": ["destructuring", "collection", "json"]
   }
 ]

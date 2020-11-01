@@ -10,6 +10,7 @@ A collection of full-stack JavaScript projects for learning modern js fundamenta
 - [Promises and Async/Await](/lesson-promises-async-await)
 - [Generate Static Site Using Node](/lesson-generate-static-site)
 - [Make HTTP Requests Using Node](/lesson-make-http-request)
+- [Destructuring Example With Nested Collection](/lesson-destructuring-collection)
 
 ### License
 
