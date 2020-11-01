@@ -32,5 +32,10 @@
     "name": "Generate Static Site Using Node",
     "path": "/lesson-generate-static-site",
     "topics": ["static sites", "express.js"]
+  },
+  {
+    "name": "Make HTTP Requests Using Node",
+    "path": "/lesson-make-http-request",
+    "topics": ["api", "http", "axios", "async/await", "promises"]
   }
 ]

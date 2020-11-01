@@ -1,0 +1,20 @@
+{
+  "name": "lesson-make-http-request",
+  "version": "1.0.0",
+  "description": "make http request in node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "http",
+    "request",
+    "api"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "0.21.0"
+  }
+}
