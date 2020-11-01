@@ -1,6 +1,5 @@
 const { writeFileSync, readdirSync, lstatSync, readFileSync } = require("fs");
 const path = require('path');
-const { Z_PARTIAL_FLUSH } = require("zlib");
 const lessonData = require("./lessons.json");
 
 const PROJECT_TREE_PATH = "https://github.com/introspective-code/fullstack-js-lessons/tree/master";
