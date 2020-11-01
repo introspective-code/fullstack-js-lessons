@@ -39,8 +39,8 @@
     "topics": ["api", "http", "axios", "async/await", "promises"]
   },
   {
-    "name": "Destructuring Example With Nested Collection",
-    "path": "/lesson-destructuring-collection",
+    "name": "Destructuring Examples",
+    "path": "/lesson-destructuring-examples",
     "topics": ["destructuring", "collection", "json"]
   }
 ]

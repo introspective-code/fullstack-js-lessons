@@ -1,0 +1,47 @@
+{
+  "deviceOSMap": {
+    "pc": "windows",
+    "mac": "osx",
+    "iphone": "ios",
+    "pixel": "android",
+    "galaxy": "android"
+  },
+  "furnitureCatalogue": [
+    {
+      "name": "bedframe",
+      "price": 599.99,
+      "color": "black",
+      "dimensions": [100, 100],
+      "pieces": [
+        {
+          "name": "box frame",
+          "dimensions": [90, 90],
+          "quantity": 1
+        },
+        {
+          "name": "headboard",
+          "dimensions": [10, 90],
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "name": "office desk",
+      "price": 149.99,
+      "color": "grey",
+      "dimensions": [20, 80],
+      "pieces": [
+        {
+          "name": "desk",
+          "dimensions": [20, 80],
+          "quantity": 1
+        },
+        {
+          "name": "pegs",
+          "dimensions": [2, 2],
+          "quantity": 5
+        }
+      ]
+    }
+  ]
+}
