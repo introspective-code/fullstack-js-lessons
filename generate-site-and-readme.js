@@ -7,6 +7,10 @@ const PROJECT_PATH = "./";
 const HTML_PATH = "./index.html";
 const README_PATH = "./README.md";
 const FAVICON = "https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/237/open-book_1f4d6.png";
+const CONTRIBUTORS = [
+  'nafeu',
+  'szikaria961'
+];
 
 const getMarkup = ({ pathContent }) =>
   `
@@ -273,6 +277,18 @@ const styles = `
   .modal-close:active {
     opacity: 0.5;
   }
+
+  .contributors {
+    display: flex;
+    flex-wrap: wrap;
+    color: #f6b93b;
+    padding: 0.5rem;
+  }
+
+  .contributor {
+    padding: 0.25rem;
+    color: #079992;
+  }
 `;
 
 const getBody = ({ pathContent }) => {
@@ -314,6 +330,10 @@ const getBody = ({ pathContent }) => {
         <div class="lessons">
           ${lessons}
         </div>
+        <div class="header">Contributors:</div>
+        <div class="contributors">
+          ${getContributors()}
+        </div>
       </div>
     </div>
     <div class="footer">
@@ -321,6 +341,12 @@ const getBody = ({ pathContent }) => {
     </div>
   `;
 };
+
+const getContributors = () => {
+  return CONTRIBUTORS.map(contributor => {
+    return `<a href="https://github.com/${contributor}" class="contributor">${contributor}</a>`;
+  }).join("\n");
+}
 
 const getScript = ({ pathContent }) => `
   var modalOpen = false;
