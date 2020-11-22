@@ -1,0 +1,26 @@
+{
+  "name": "lesson-cli",
+  "version": "1.0.0",
+  "description": "cli with arg and inquirer",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "attach": "npm link"
+  },
+  "bin": {
+    "@introspective-code/lesson-cli": "bin/lesson-cli",
+    "lesson-cli": "bin/lesson-cli"
+  },
+  "keywords": [
+    "cli",
+    "arg",
+    "inquirer"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "arg": "5.0.0",
+    "esm": "3.2.25",
+    "inquirer": "7.3.3"
+  }
+}

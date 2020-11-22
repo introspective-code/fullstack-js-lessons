@@ -11,6 +11,7 @@ A collection of full-stack JavaScript projects for learning modern js fundamenta
 - [Generate Static Site Using Node](/lesson-generate-static-site)
 - [Make HTTP Requests Using Node](/lesson-make-http-request)
 - [Destructuring Examples](/lesson-destructuring-examples)
+- [Basic CLI Built with Arg, Inquirer and ESM](/lesson-cli)
 
 ### License
 

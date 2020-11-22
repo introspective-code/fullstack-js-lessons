@@ -42,5 +42,10 @@
     "name": "Destructuring Examples",
     "path": "/lesson-destructuring-examples",
     "topics": ["destructuring", "collection", "json"]
+  },
+  {
+    "name": "Basic CLI Built with Arg, Inquirer and ESM",
+    "path": "/lesson-cli",
+    "topics": ["cli", "interactive", "arg", "inquirer", "esm"]
   }
 ]
