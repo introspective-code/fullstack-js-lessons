@@ -12,6 +12,7 @@ A collection of full-stack JavaScript projects for learning modern js fundamenta
 - [Make HTTP Requests Using Node](/lesson-make-http-request)
 - [Destructuring Examples](/lesson-destructuring-examples)
 - [Basic CLI Built with Arg, Inquirer and ESM](/lesson-cli)
+- [Environment Configuration Using Dotenv](/lesson-env-config)
 
 ### License
 
