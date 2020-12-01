@@ -52,5 +52,10 @@
     "name": "Environment Configuration Using Dotenv",
     "path": "/lesson-env-config",
     "topics": ["dotenv", "env", "config"]
+  },
+  {
+    "name": "Make API Request From Client",
+    "path": "/lesson-make-api-request-from-client",
+    "topics": ["api", "http", "client", "fetch"]
   }
 ]

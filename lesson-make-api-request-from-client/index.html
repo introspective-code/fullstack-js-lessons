@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Make API Request From Client</title>
+</head>
+<body>
+  <h1 id="loading-message">Loading dog...</h1>
+  <img src="" id="dog"/>
+
+  <script type="text/javascript">
+    const API_URL = 'https://dog.ceo/api/breeds/image/random';
+    const REQUEST_OPTIONS = {
+      method: 'GET'
+    };
+
+    const imgElement = document.getElementById('dog');
+    const loadingMessage = document.getElementById('loading-message');
+
+    fetch(API_URL, REQUEST_OPTIONS)
+      .then(response => response.json() /* Format response to JSON */)
+      .then(json => {
+        const { message: dogImageUrl } = json;
+        imgElement.src = dogImageUrl;
+        loadingMessage.style.display = 'none';
+      });
+  </script>
+</body>
+</html>
