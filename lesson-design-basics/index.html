@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Design Basics</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;400;700&display=swap" rel="stylesheet">
+  <style>
+    .header {
+      font-size: 1.5em;
+      padding: 1em;
+    }
+
+    .text {
+      font-size: 1.5em;
+      color: red;
+      border: 1px solid red;
+    }
+
+    #flex-css-grid-example,
+    #padding-margin-example,
+    #font-example {
+      width: 100%;
+      height: 15vh;
+    }
+
+    .flex-container {
+      display: flex;
+      justify-content: center;
+      border: 1px solid black;
+    }
+
+    .flex-div {
+      height: 15vh;
+      width: 80%;
+      border: 1px solid blue;
+    }
+
+    .box {
+      width: 25%;
+      font-size: 2.5em;
+      text-align: center;
+    }
+
+    .with-padding {
+      background-color: pink;
+      padding: 1em 1em 1em 1em;
+      /*padding-top: 1em;*/
+      /*padding-right: 1em;*/
+      /*padding-bottom: 1em;*/
+      /*padding-left: 1em;*/
+    }
+
+    .with-margin {
+      background-color: orange;
+      margin: 1em 1em 1em 1em;
+      /*margin-top: 1em;*/
+      /*margin-right: 1em;*/
+      /*margin-bottom: 1em;*/
+      /*margin-left: 1em;*/
+    }
+
+    .clean-text {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 1.5em;
+      margin: 2vw;
+    }
+
+    .thin {
+      font-weight: 100;
+    }
+
+    .bold {
+      font-weight: 700;
+    }
+
+    .color-box {
+      height: 10vh;
+      width: 10vh;
+    }
+
+    /* Pick a palette from a trusted color palette source: https://flatuicolors.com/*/
+
+    .colorA {
+      background-color: #00b894;
+      color: white;
+    }
+    .colorB {
+      background-color: #0984e3;
+      color: white;
+    }
+    .colorC {
+      background-color: #d63031;
+      color: white;
+    }
+    .colorD {
+      background-color: #e17055;
+      color: white;
+    }
+    .colorE {
+      background-color: #2d3436;
+      color: white;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="header">Grid Systems (Flex)</div>
+
+  <div id="flex-css-grid-example">
+    <div class="flex-container">
+      <div class="flex-div">
+        <div class="text">This is inside the blue box</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header">Padding & Margin</div>
+
+  <div id="padding-margin-example">
+    <div class="flex-container">
+      <div class="box with-padding">padding</div>
+      <div class="box with-margin">margin</div>
+    </div>
+  </div>
+
+  <div class="header">Font</div>
+
+  <div id="font-example">
+    <div class="flex-container">
+      <div class="clean-text">
+        <strong>Pick a good font</strong> because it drastically improves the polish and quality of your UI. Vary between <span class="thin">thin</span> and <span class="bold">bold</span> as needed.
+      </div>
+    </div>
+  </div>
+
+  <div class="header">Color</div>
+
+  <div id="color-example">
+    <div class="flex-container">
+      <div class="color-box colorA">#00b894</div>
+      <div class="color-box colorB">#0984e3</div>
+      <div class="color-box colorC">#d63031</div>
+      <div class="color-box colorD">#e17055</div>
+      <div class="color-box colorE">#2d3436</div>
+    </div>
+  </div>
+
+</body>
+</html>

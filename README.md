@@ -14,6 +14,7 @@ A collection of full-stack JavaScript projects for learning modern js fundamenta
 - [Basic CLI Built with Arg, Inquirer and ESM](/lesson-cli)
 - [Environment Configuration Using Dotenv](/lesson-env-config)
 - [Make API Request From Client](/lesson-make-api-request-from-client)
+- [Design Basics for Non-Designers](/lesson-design-basics)
 
 ### License
 
