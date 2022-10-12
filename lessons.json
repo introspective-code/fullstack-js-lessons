@@ -62,5 +62,10 @@
     "name": "Design Basics for Non-Designers",
     "path": "/lesson-design-basics",
     "topics": ["design", "css", "ui"]
+  },
+  {
+    "name": "GraphQL Example with Express",
+    "path": "/lesson-graphql-express",
+    "topics": ["graphql", "express", "api"]
   }
 ]
